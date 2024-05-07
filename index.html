@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
+    <div class="header" id="imageContainer" style="display:block;">
+        <img src="star.png" id="initialImage" onclick="showIlLoveBri()">
+    </div>
+    <div class="header" id="ilovebriSection" style="display:none;">
         <h1 id="header">ilovebri</h1>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
@@ -25,7 +28,7 @@
 
         let imgText = [
             "01.01.2024",
-            "hot",
+            "",
             "so cute", 
             "Happy Anniversary!!!",
             "05.17.2024",
@@ -56,7 +59,7 @@
             "05.08.2023 when you put me on prince st pizza",
             "<3",
             "camp flog",
-            "Happy Anniversary Baby",
+            "Happy Anniversary",
             "05.27.2023",
             "05.29.2023",
             "12.09.2023 we onna cruise!",
@@ -134,7 +137,7 @@
                 }),
             ])
         }
-
+        
         function draw() {
             background("black");
             Engine.update(engine);
@@ -182,8 +185,8 @@
             }
             
             updatePosition() {
-                let newX = random(100, width - 100);
-                let newY = random(100, height - 100);
+                let newX = random(0, width - 100);
+                let newY = random(0, height - 100);
 
                 Body.setPosition(this.body, { x: newX, y: newY });
             }
@@ -209,6 +212,15 @@
                     x: forceX,
                     y: forceY
                 });
+            });
+        }
+
+        function showIlLoveBri() {
+            document.getElementById("imageContainer").style.display = "none";
+            document.getElementById("ilovebriSection").style.display = "block";
+            // Show the items
+            items.forEach(item => {
+                item.div.style.display = "block";
             });
         }
     </script>
