@@ -13,6 +13,9 @@
     <div class="header" id="ilovebriSection" style="display:none;">
         <h1 id="header">ilovebri</h1>
     </div>
+    <div id="secretpage">
+        <h1>secret</h1>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <script>
@@ -31,7 +34,7 @@
             "",
             "so cute", 
             "Happy Anniversary!!!",
-            "05.17.2024",
+            "05.17.2024 click me",
             "12.25.2023",
             "10.08.2023",
             "10.08.2023",
@@ -67,7 +70,7 @@
             "12.17.2023",
             "01.14.2024 in line for xio long bao",
             "07.22.2023 pretty lookin for clouds",
-            "damn",
+            "<33",
             "08.06.2023 hard summa",
             "chúc mừng năm mới"
         ];
@@ -91,7 +94,7 @@
                 let y = random(100, height - 100);
                 let randomImageNumber = getRandomNumber();
                 let text = getTextForImage(randomImageNumber);
-                items.push(new Item(x, y, `./assets/img${randomImageNumber}.jpg`, text))
+                items.push(new Item(x, y, `./assets/img${randomImageNumber}.jpg`, text, randomImageNumber))
             }         
 
             // Event listener for mouse click on the header
@@ -100,12 +103,12 @@
             });
         }
 
-        //function to reset items inside website
+        //function to reset items inside website after clicking name
         function resetItems() {
             items.forEach((item) => {
                 let randomImageNumber = getRandomNumber();
                 let text = getTextForImage(randomImageNumber);
-                item.updateImage(`./assets/img${randomImageNumber}.jpg`, text);
+                item.updateImage(`./assets/img${randomImageNumber}.jpg`, text, randomImageNumber);
                 item.updatePosition(); // Add this line to update position
             });
         }
@@ -116,7 +119,6 @@
         }       
 
         function getTextForImage(imageNumber) {
-            // Replace this with your logic to get text for each image
             return imgText[imageNumber-1];
         }
 
@@ -149,7 +151,7 @@
         }
 
         class Item {
-            constructor(x, y, imagePath, text){
+            constructor(x, y, imagePath, text, imageNumber){
                 let options = {
                     frictionAir: 0.1,
                     restitution: 0.25,
@@ -171,7 +173,15 @@
                 p.textContent = text;
                 this.div.appendChild(p);
                 document.body.appendChild(this.div);
+
+                if(imageNumber === 5){
+                    this.div.addEventListener("click", function(){
+                        window.location.href="test.html";
+                    });
+                }
             }
+
+            
 
             update() {
                 this.div.style.left = `${this.body.position.x -50}px`;
@@ -179,22 +189,31 @@
                 this.div.style.transform = `rotate(${this.body.angle}rad)`;
             }
 
-            updateImage(imagePath, text) {
+            updateImage(imagePath, text, imageNumber) {
                 this.div.querySelector("img").src = imagePath;
                 this.div.querySelector("p").textContent = text;
+                if(imageNumber === 5){
+                    this.div.addEventListener("click", function(){
+                        window.location.href="test.html";
+                    });
+                }
             }
-            
-            updatePosition() {
-                let newX = random(0, width - 100);
-                let newY = random(0, height - 100);
 
-                Body.setPosition(this.body, { x: newX, y: newY });
+            updatePosition(){
+                let newX, newY;
+                do {
+                    newX = random(0, width - 100);
+                    newY = random(0, height-100);
+                } while(dist(newX, newY, width/2, height/2) <200);  //distance from center
+                Body.setPosition(this.body, {x: newX, y: newY});
+                Body.setAngle(this.body, 0); //reset rotation to 0 
+                
             }
         }
 
         function mouseMoved() {
             items.forEach((item) => {
-                let forceMagnitude = 0.5; // Adjust this value for smoother movement
+                let forceMagnitude = 0.3; // Adjust this value for smoother movement
                 let forceX = 0;
                 let forceY = 0;
 

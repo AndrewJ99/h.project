@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000000;
+}
+
+.header {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header a {
+    font-size: 50px;
+    color: silver;
+}
+
+.header img {
+    width: 250px;
+    height: 250px;
+}
+
+
+.header h1 {
+    font-family: "Impact", sans-serif;
+    font-size: 100px;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 175%;
+    color: #abc9ef;
+}
+
+
+
+

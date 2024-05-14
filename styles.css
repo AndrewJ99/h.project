@@ -21,7 +21,7 @@ body {
 }
 
 .header:hover img {
-    transform: rotate(5deg); /* Rotate the image 5 degrees */
+    transform: rotate(10deg); /* Rotate the image */
 }
 
 .header img{
@@ -81,7 +81,7 @@ body {
 
 /* css for phone view ports */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .item {
         padding: 0.3em 0.3em 3em 0.3em;
         width: 150px; /* Decrease width for smaller screens */
@@ -93,4 +93,6 @@ body {
         font-size: 80%;
     }
 }
+
+
 
