@@ -13,6 +13,13 @@ body {
     background: #000;
 }
 
+.pushingp {
+    font-size: 10px;
+    font-style: italic;
+    position: absolute;
+    color: white;
+}
+
 .header {
     position: absolute;
     top: 50%;
@@ -82,7 +89,7 @@ body {
 
 @media screen and (max-width: 900px) {
     .item {
-        padding: 0.3em 0.3em 3em 0.3em;
+        padding: 0.2em 0.2em 3em 0.2em;
         width: 150px; /* Decrease width for smaller screens */
         height: 150px; /* Decrease height for smaller screens */
     }
