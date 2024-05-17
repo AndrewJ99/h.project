@@ -11,7 +11,7 @@
         <img src="star.png" id="initialImage" onclick="showIlLoveBri()">
     </div>
     <div class="header" id="ilovebriSection" style="display:none;">
-        <h1 id="header">ilovebri</h1>
+        <h1 id="header">briandoy</h1>
     </div>
     <div id="secretpage">
         <h1>secret</h1>
@@ -89,7 +89,7 @@
             noCursor();
 
 
-            for (let i = 0; i < 4; i++){
+            for (let i = 0; i < 7; i++){
                 let x = random(100, width - 100);
                 let y = random(100, height - 100);
                 let randomImageNumber = getRandomNumber();
@@ -200,15 +200,16 @@
             }
 
             updatePosition(){
+                let randomWow = Math.floor(Math.random() * 1.5) + 0; // Bias towards slightly tilted left or right
                 let newX, newY;
                 do {
                     newX = random(0, width - 100);
-                    newY = random(0, height-100);
-                } while(dist(newX, newY, width/2, height/2) <200);  //distance from center
+                    newY = random(0, height - 100);
+                } while(dist(newX, newY, width / 2, height / 2) < 300);  //distance from center
                 Body.setPosition(this.body, {x: newX, y: newY});
-                Body.setAngle(this.body, 0); //reset rotation to 0 
-                
+                Body.setAngle(this.body, randomWow); //reset rotation to slightly tilted left or right
             }
+
         }
 
         function mouseMoved() {
